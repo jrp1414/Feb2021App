@@ -1,0 +1,8 @@
+<p>event-binding works!</p>
+<div class="alert alert-primary" role="alert">
+    <strong>{{message}}</strong>
+</div>
+<!-- <button type="button" (click)="message='Test Message'" class="btn btn-primary">Click</button> -->
+<button type="button" (click)="onClick()" class="btn btn-primary">Click</button>
+<!-- <input type="text" (input)="onInputChange($event)" > -->
+<input type="text" (keyup)="onInputChange($event)">

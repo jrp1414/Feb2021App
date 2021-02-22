@@ -11,11 +11,15 @@ export class StringInterpolationComponent {
     termsAndConditions: boolean = true;
     person1: Person = { Name: "Amit", Address: "Delhi" };
     person2: Person;
+    imageUrl: string = "https://angular.io/assets/images/logos/angular/angular.png";
 
     constructor() {
         this.person2 = new Person();
         this.person2.Name = "Amol";
         this.person2.Address = "Pune";
+        setTimeout(() => {
+            this.imageUrl = "https://angular.io/assets/images/logos/angular/angular_solidBlack.png";
+        }, 5000);
     }
 }
 

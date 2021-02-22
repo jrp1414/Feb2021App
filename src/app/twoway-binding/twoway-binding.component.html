@@ -1,0 +1,38 @@
+<h3>One Way Binding limitations</h3>
+<div class="row">
+    <div class="col-md-3">
+        <input type="text" (keyup)="OneWayChange($event)">
+    </div>
+    <div class="col-md-3">
+        {{OneWayData}}
+    </div>
+    <div class="col-md-3">
+        <button type="button" (click)="OneWayTest()" class="btn btn-primary">One Way Test</button>
+    </div>
+</div>
+
+<!-- <h3>Two Way Binding Examples</h3>
+<div class="row">
+    <div class="col-md-3">
+        <input type="text" [(ngModel)]="TwoWayData">
+    </div>
+    <div class="col-md-3">
+        {{TwoWayData}}
+    </div>
+    <div class="col-md-3">
+        <button type="button" (click)="TwoWayTest()" class="btn btn-primary">Two Way Test</button>
+    </div>
+</div> -->
+
+<h3>Two Way Binding Examples</h3>
+<div class="row">
+    <div class="col-md-3">
+        <input type="text" [ngModel]="TwoWayData" (ngModelChange)="TwoWayChange($event)">
+    </div>
+    <div class="col-md-3">
+        {{TwoWayData}}
+    </div>
+    <div class="col-md-3">
+        <button type="button" (click)="TwoWayTest()" class="btn btn-primary">Two Way Test</button>
+    </div>
+</div>
