@@ -1,0 +1,27 @@
+<p>products works!</p>
+
+<table class="table table-bordered table-inverse table-responsive">
+    <thead class="thead-inverse">
+        <tr>
+            <th>Sl No</th>
+            <th>Name</th>
+            <th>Code</th>
+            <th>Release Date</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Rating</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- <tr *ngFor="let prod of products;let i = index "> -->
+        <tr *ngFor="let prod of products;index as i; first as fst; last as lst; odd as o; even as e; count as c">
+            <td scope="row">{{i+1}} of {{c}}</td>
+            <td>{{prod.productName}}</td>
+            <td>{{prod.productCode}}</td>
+            <td>{{prod.releaseDate}}</td>
+            <td>{{prod.description?.descText}}</td>
+            <td>{{prod.price}}</td>
+            <td>{{prod.starRating}}</td>
+        </tr>
+    </tbody>
+</table>

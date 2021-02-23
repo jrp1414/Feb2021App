@@ -7,6 +7,7 @@ import { StringInterpolationComponent } from './string-interpolation/string-inte
 import { ProprtyBindingComponent } from './proprty-binding/proprty-binding.component';
 import { EventBindingComponent } from './event-binding/event-binding.component';
 import { TwowayBindingComponent } from './twoway-binding/twoway-binding.component';
+import { ProductsComponent } from './products/products.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { TwowayBindingComponent } from './twoway-binding/twoway-binding.componen
     StringInterpolationComponent,
     ProprtyBindingComponent,
     EventBindingComponent,
-    TwowayBindingComponent
+    TwowayBindingComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
