@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {  Product } from '../services/product.model';
+import { Product } from '../services/product.model';
 
 @Component({
   selector: 'app-products',
@@ -8,7 +8,8 @@ import {  Product } from '../services/product.model';
   ]
 })
 export class ProductsComponent {
-  products: any[] = productList;
+  products: Product[] = productList;
+  filterText: string = "";
   constructor() {
     // for (let index in productList) {
     //   console.log(productList[index]);
@@ -29,8 +30,24 @@ export class ProductsComponent {
 
     // let person:Person = { Name: "Ram", Address: "Pune" };
 
-    let person: Person = new Person("Amit","Mumbai");
+    let person: Person = new Person("Amit", "Mumbai");
     console.log(person);
+  }
+
+  getStyle(product: Product) {
+    if (product.starRating >= 3) {
+      return { backgroundColor: "forestgreen", color: "yellow" };
+    }
+    return { backgroundColor: "deeppink", color: "yellow" };
+  }
+
+  getClass(product) {
+    if (product.starRating >= 3) {
+      // return "green bold";
+      // return ["green","bold"];
+      return { green: true, bold: true };
+    }
+    return "red";
   }
 
 }
