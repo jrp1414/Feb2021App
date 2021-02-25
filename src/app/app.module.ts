@@ -8,6 +8,8 @@ import { ProprtyBindingComponent } from './proprty-binding/proprty-binding.compo
 import { EventBindingComponent } from './event-binding/event-binding.component';
 import { TwowayBindingComponent } from './twoway-binding/twoway-binding.component';
 import { ProductsComponent } from './products/products.component';
+import { ProductThumbnailComponent } from './products/product-thumbnail/product-thumbnail.component';
+import { CartComponent } from './products/cart/cart.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { ProductsComponent } from './products/products.component';
     ProprtyBindingComponent,
     EventBindingComponent,
     TwowayBindingComponent,
-    ProductsComponent
+    ProductsComponent,
+    ProductThumbnailComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

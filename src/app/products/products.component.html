@@ -1,5 +1,4 @@
-<p>products works!</p>
-
+<h3>Products List</h3>
 <div class="row">
     <div class="col-md-3">
         Filter:
@@ -9,76 +8,12 @@
             <input type="text" class="form-control" [(ngModel)]="filterText" placeholder="Filter">
         </div>
     </div>
-    <div class="col-md-4">
-        <!-- <div [hidden]="filterText.length==0" class="alert alert-primary" role="alert">
-            <strong>{{filterText}}</strong>
-        </div> -->
-        <div *ngIf="filterText.length>0; else noFilter" class="alert alert-primary" role="alert">
-            <strong>{{filterText}}</strong>
-        </div>
-        <ng-template #noFilter>
-            <div class="alert alert-danger" role="alert">
-                <strong>No Filter Applied</strong>
-            </div>
-        </ng-template>
-        <!-- <div *ngIf="filterText.length==0" class="alert alert-danger" role="alert">
-            <strong>No Filter Applied</strong>
-        </div> -->
-        <!-- <ng-template [ngIf]="filterText.length>0">
-            <div class="alert alert-primary" role="alert">
-                <strong>{{filterText}}</strong>
-            </div>
-        </ng-template> -->
-
+    <div class="col-md-3">
+        <cart [cart]="addedToCart"></cart>
     </div>
 </div>
-
-<table class="table table-bordered table-inverse table-responsive">
-    <thead class="thead-inverse">
-        <tr>
-            <th>Sl No</th>
-            <th>Name</th>
-            <th>Code</th>
-            <th>Release Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Rating</th>
-            <th>Odd/Even</th>
-        </tr>
-    </thead>
-    <tbody>
-        <!-- <tr *ngFor="let prod of products;let i = index "> -->
-        <!-- <tr [style.backgroundColor]="prod.starRating>=3?'chartreuse':'crimson'"
-            [style.color]="prod.starRating>=3?'blue':'white'"
-            *ngFor="let prod of products;index as i; first as fst; last as lst; odd as o; even as e; count as c"> -->
-        <!-- <tr class="bold" [class.green]="prod.starRating>=3" [class.red]="prod.starRating<3"
-            *ngFor="let prod of products;index as i; first as fst; last as lst; odd as o; even as e; count as c"> -->
-        <!-- <tr [ngStyle]="{'background-color':prod.starRating>=3?'chartreuse':'crimson',
-            color:prod.starRating>=3?'darkblue':'white'}"
-            *ngFor="let prod of products;index as i; first as fst; last as lst; odd as o; even as e; count as c"> -->
-
-        <!-- <tr [ngStyle]="getStyle(prod)"
-            *ngFor="let prod of products;index as i; first as fst; last as lst; odd as o; even as e; count as c"> -->
-
-        <!-- <tr [ngClass]="{red:prod.starRating>=3, green:prod.starRating<3}"
-            *ngFor="let prod of products;index as i; first as fst; last as lst; odd as o; even as e; count as c"> -->
-        <tr [ngClass]="getClass(prod)"
-            *ngFor="let prod of products;index as i; first as fst; last as lst; odd as o; even as e; count as c">
-            <td scope="row">{{i+1}} of {{c}}</td>
-            <td>{{prod.productName}}</td>
-            <td>{{prod.productCode}}</td>
-            <td>{{prod.releaseDate}}</td>
-            <td>{{prod.description?.descText}}</td>
-            <td>{{prod.price}}</td>
-            <td [ngSwitch]="prod.starRating">
-                <span *ngSwitchCase="1">Very Bad</span>
-                <span *ngSwitchCase="2">Bad</span>
-                <span *ngSwitchCase="3">Average</span>
-                <span *ngSwitchCase="4">Good</span>
-                <span *ngSwitchCase="5">Very Good</span>
-                <span *ngSwitchDefault>NA</span>
-            </td>
-            <td>{{e?'even':''}}{{o?'odd':''}}</td>
-        </tr>
-    </tbody>
-</table>
+<div class="row">
+    <div class="col-md-3" *ngFor="let prod of products">
+        <product-thumbnail [pd]="prod" (addtocart)="Received($event)"></product-thumbnail>
+    </div>
+</div>
