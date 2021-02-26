@@ -11,9 +11,12 @@
     <div class="col-md-3">
         <cart [cart]="addedToCart"></cart>
     </div>
+    <div class="col-md-3">
+        <button type="button" (click)="FilterTest()" class="btn btn-primary">Filter Test</button>
+    </div>
 </div>
 <div class="row">
-    <div class="col-md-3" *ngFor="let prod of products | filter : filterText">
+    <div class="col-md-3" *ngFor="let prod of products | filter : filterText :'title':'type'">
         <product-thumbnail [pd]="prod" (addtocart)="Received($event)"></product-thumbnail>
     </div>
 </div>
