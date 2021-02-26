@@ -10,6 +10,8 @@ import { TwowayBindingComponent } from './twoway-binding/twoway-binding.componen
 import { ProductsComponent } from './products/products.component';
 import { ProductThumbnailComponent } from './products/product-thumbnail/product-thumbnail.component';
 import { CartComponent } from './products/cart/cart.component';
+import { ShortenPipe } from './shared/pipes/shorten.pipe';
+import { FilterPipe } from './shared/pipes/filter.pipe';
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import { CartComponent } from './products/cart/cart.component';
     TwowayBindingComponent,
     ProductsComponent,
     ProductThumbnailComponent,
-    CartComponent
+    CartComponent,
+    ShortenPipe,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

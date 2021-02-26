@@ -10,6 +10,8 @@ import { Product } from 'src/app/services/product.model';
 export class ProductThumbnailComponent {
   @Input("pd") product: Product;
   @Output("addtocart") data: EventEmitter<string> = new EventEmitter();
+
+  date: Date = new Date();
   constructor() { }
 
   AddToCart() {
