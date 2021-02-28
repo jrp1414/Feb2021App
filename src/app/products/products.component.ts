@@ -18,18 +18,26 @@ import * as productsList from "../services/products.json";
 export class ProductsComponent {
   products: Product[] = (productsList as any).default;
   filterText: string = "";
-
+  categories: any[] = [];
+  uniqueCategories: string[] = [];
+  selectedCategories: string[] = [];
   addedToCart: string[] = [];
   constructor() {
+    this.uniqueCategories = [...new Set(this.products.map(item => item.type))];
+    this.categories = [...new Set(this.uniqueCategories.map(item => { return { type: item, isChecked: false } }))];
+  }
+
+  changeSelection() {
+    this.selectedCategories = this.categories.filter((value) => value.isChecked).map(item => item.type);    
   }
 
   Received(d) {
     this.addedToCart.push(d);
   }
 
-  FilterTest(){
+  FilterTest() {
     this.products.push({
-      "id":1,
+      "id": 1,
       "title": "Brown eggs",
       "type": "dairy",
       "description": "Raw organic brown eggs in a basket",
@@ -38,8 +46,10 @@ export class ProductsComponent {
       "width": 400,
       "price": 28.1,
       "rating": 4,
-      "imageurl":"https://previews.123rf.com/images/bhofack2/bhofack21502/bhofack2150200615/37073865-raw-organic-brown-eggs-in-a-basket.jpg"
+      "imageurl": "https://previews.123rf.com/images/bhofack2/bhofack21502/bhofack2150200615/37073865-raw-organic-brown-eggs-in-a-basket.jpg"
     });
   }
+
+  sortBy: string = "asc";
 
 }

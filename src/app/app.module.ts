@@ -12,6 +12,8 @@ import { ProductThumbnailComponent } from './products/product-thumbnail/product-
 import { CartComponent } from './products/cart/cart.component';
 import { ShortenPipe } from './shared/pipes/shorten.pipe';
 import { FilterPipe } from './shared/pipes/filter.pipe';
+import { SortPipe } from './shared/pipes/sort.pipe';
+import { FilterByCategoryPipe } from './shared/pipes/filter-by-category.pipe';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { FilterPipe } from './shared/pipes/filter.pipe';
     ProductThumbnailComponent,
     CartComponent,
     ShortenPipe,
-    FilterPipe
+    FilterPipe,
+    SortPipe,
+    FilterByCategoryPipe
   ],
   imports: [
     BrowserModule,
