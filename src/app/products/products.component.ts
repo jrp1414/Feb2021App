@@ -24,11 +24,14 @@ export class ProductsComponent {
   addedToCart: string[] = [];
   constructor() {
     this.uniqueCategories = [...new Set(this.products.map(item => item.type))];
+    // console.log(this.uniqueCategories);
     this.categories = [...new Set(this.uniqueCategories.map(item => { return { type: item, isChecked: false } }))];
+    // console.log(this.categories);
   }
 
   changeSelection() {
     this.selectedCategories = this.categories.filter((value) => value.isChecked).map(item => item.type);    
+    console.log(this.selectedCategories);
   }
 
   Received(d) {

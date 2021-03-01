@@ -14,6 +14,8 @@ import { ShortenPipe } from './shared/pipes/shorten.pipe';
 import { FilterPipe } from './shared/pipes/filter.pipe';
 import { SortPipe } from './shared/pipes/sort.pipe';
 import { FilterByCategoryPipe } from './shared/pipes/filter-by-category.pipe';
+import { BasicHighlightDirective } from './shared/directives/basic-highlight.directive';
+import { BetterHighlightDirective } from './shared/directives/better-highlight.directive';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { FilterByCategoryPipe } from './shared/pipes/filter-by-category.pipe';
     ShortenPipe,
     FilterPipe,
     SortPipe,
-    FilterByCategoryPipe
+    FilterByCategoryPipe,
+    BasicHighlightDirective,
+    BetterHighlightDirective
   ],
   imports: [
     BrowserModule,
