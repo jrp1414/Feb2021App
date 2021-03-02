@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { LoggerService } from '../services/logger.service';
 import { Product } from '../services/product.model';
-import * as productsList from "../services/products.json";
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-products',
@@ -13,25 +14,27 @@ import * as productsList from "../services/products.json";
     object-fit: cover;
 }
     `
+  ],
+  providers: [
+    // LoggerService,
+    // ProductService
   ]
 })
 export class ProductsComponent {
-  products: Product[] = (productsList as any).default;
+  products: Product[] = [];
   filterText: string = "";
   categories: any[] = [];
-  uniqueCategories: string[] = [];
   selectedCategories: string[] = [];
   addedToCart: string[] = [];
-  constructor() {
-    this.uniqueCategories = [...new Set(this.products.map(item => item.type))];
-    // console.log(this.uniqueCategories);
-    this.categories = [...new Set(this.uniqueCategories.map(item => { return { type: item, isChecked: false } }))];
-    // console.log(this.categories);
+  constructor(private logger: LoggerService, private ps: ProductService) {
+    this.products = this.ps.getProducts();
+    this.categories = this.ps.getCategories();
   }
 
   changeSelection() {
-    this.selectedCategories = this.categories.filter((value) => value.isChecked).map(item => item.type);    
-    console.log(this.selectedCategories);
+    this.selectedCategories = this.categories.filter((value) => value.isChecked).map(item => item.type);
+    // this.logger.log(this.selectedCategories.toString());
+    this.ps.notify.emit(this.selectedCategories.toString());
   }
 
   Received(d) {

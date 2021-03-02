@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { LoggerService } from 'src/app/services/logger.service';
 import { Product } from 'src/app/services/product.model';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'product-thumbnail',
@@ -11,19 +13,27 @@ import { Product } from 'src/app/services/product.model';
   }
     `
   ],
-  changeDetection:ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  // providers:[
+  //   LoggerService
+  // ]
 })
-export class ProductThumbnailComponent {
+export class ProductThumbnailComponent implements OnInit{
   @Input("pd") product: Product;
   @Output("addtocart") data: EventEmitter<string> = new EventEmitter();
 
   date: Date = new Date();
-  constructor() { }
+  constructor(private logger: LoggerService,private ps:ProductService) { }
+  ngOnInit(): void {
+    this.ps.notify.subscribe((data)=>{
+      this.logger.log("Logged in Thumbnail : "+ data);
+    });
+  }
 
   AddToCart() {
     this.data.emit(this.product.title);
   }
   testRendering() {
-    console.log("Product Thumbnail rendered");
+    // this.logger.log("Product Thumbnail rendered");
   }
 }

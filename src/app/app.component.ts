@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { ProductService } from './services/product.service';
 
 @Component({
   // selector: 'app-root',
@@ -19,6 +20,9 @@ import { Component, ViewEncapsulation } from '@angular/core';
   //   `],
   styleUrls: [
     "./app.component.less"
+  ],
+  providers:[
+    // ProductService
   ]
   // encapsulation: ViewEncapsulation.ShadowDom
 })

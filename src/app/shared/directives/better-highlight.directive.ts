@@ -28,7 +28,4 @@ export class BetterHighlightDirective implements OnInit {
     // this.el.nativeElement.style.backgroundColor = this.defaultColor;
     this.backgroundColor = this.defaultColor;
   }
-
-
-
 }
