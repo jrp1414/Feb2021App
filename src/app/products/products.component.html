@@ -1,7 +1,7 @@
-<h3>Products List</h3>
-<div basic-highlight>Basic Highlight Example</div>
-<!-- <div better-highlight [defaultColor]="'chartreuse'">Better Highlight Example</div> -->
-<div [better-highlight]="'chartreuse'" highlight="yellow">Better Highlight Example</div>
+<div class="container">
+    <h3>Products List</h3>
+<!-- <mat-progress-spinner class="example-margin" color="warn" mode="indeterminate">
+</mat-progress-spinner>  -->
 <div class="row">
     <div class="col-md-3">
         <div class="row">
@@ -52,4 +52,5 @@
         *ngFor="let prod of products | filter : filterText :'title' | filterbycategory:selectedCategories | sort:sortBy">
         <product-thumbnail [pd]="prod" (addtocart)="Received($event)"></product-thumbnail>
     </div>
+</div>
 </div>

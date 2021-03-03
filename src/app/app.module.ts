@@ -19,8 +19,16 @@ import { BetterHighlightDirective } from './shared/directives/better-highlight.d
 import { UnlessDirective } from './shared/directives/unless.directive';
 import { LoggerService } from './services/logger.service';
 import { TempProductsComponent } from './temp-products/temp-products.component';
-import { ProductService } from './services/product.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './shared/material/material.module';
+import { NavigationComponent } from './navigation/navigation.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { RouterModule, Routes } from '@angular/router';
 
+const routes:Routes = [
+  {path:"home",component:DashboardComponent},
+  {path:"products",component:ProductsComponent}
+];
 
 @NgModule({
   declarations: [
@@ -39,11 +47,16 @@ import { ProductService } from './services/product.service';
     BasicHighlightDirective,
     BetterHighlightDirective,
     UnlessDirective,
-    TempProductsComponent
+    TempProductsComponent,
+    NavigationComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [
     LoggerService,
