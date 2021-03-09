@@ -9,7 +9,7 @@
       <a mat-list-item href="products">Products</a> -->
       <a mat-list-item routerLink="home">Home</a>
       <a mat-list-item routerLink="products">Products</a>
-      <a mat-list-item href="#">Link 3</a>
+      <!-- <a mat-list-item routerLink="andvfshvbhb">Wrong URL</a> -->
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -18,8 +18,7 @@
         type="button"
         aria-label="Toggle sidenav"
         mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
+        (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>Feb2020App2</span>

@@ -4,7 +4,7 @@ import { Product } from './product.model';
 import * as productsJson from "./products.json";
 
 @Injectable({
-  providedIn:"root"
+  providedIn: "root"
 })
 export class ProductService {
 
@@ -23,5 +23,9 @@ export class ProductService {
   getCategories() {
     let uniqueCategories = [...new Set(this.productList.map(item => item.type))];
     return [...new Set(uniqueCategories.map(item => { return { type: item, isChecked: false } }))];
+  }
+
+  getProduct(id: number): Product {
+    return this.productList.find((p) => p.id == id);
   }
 }

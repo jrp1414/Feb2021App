@@ -24,10 +24,16 @@ import { MaterialModule } from './shared/material/material.module';
 import { NavigationComponent } from './navigation/navigation.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule, Routes } from '@angular/router';
+import { ProductDetailsComponent } from './products/product-details/product-details.component';
+import { PrimengModule } from './shared/primeng/primeng.module';
 
-const routes:Routes = [
-  {path:"home",component:DashboardComponent},
-  {path:"products",component:ProductsComponent}
+const routes: Routes = [
+  { path: "home", component: DashboardComponent },
+  { path: "products", component: ProductsComponent },
+  // { path: "productdetails/:id/:title", component: ProductDetailsComponent },
+  { path: "productdetails/:id", component: ProductDetailsComponent },
+  { path: "", component: DashboardComponent },
+  // { path: "**", redirectTo: "home" },
 ];
 
 @NgModule({
@@ -49,11 +55,13 @@ const routes:Routes = [
     UnlessDirective,
     TempProductsComponent,
     NavigationComponent,
-    DashboardComponent
+    DashboardComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    PrimengModule,
     BrowserAnimationsModule,
     MaterialModule,
     RouterModule.forRoot(routes)

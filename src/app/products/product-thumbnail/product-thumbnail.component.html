@@ -2,8 +2,9 @@
     <img class="card-img-top" [src]="product.imageurl" style="max-width: 350px;max-height: 150px;">
     <div class="card-body">
         <h4 class="card-title">{{product.title | uppercase}}</h4>
-        <p class="card-text">{{product.price | currency:'INR'}}</p>
-        <button type="button" (click)="AddToCart()" class="btn btn-primary btn-sm">Add to Cart</button>
-        {{testRendering()}}  
+        <p class="card-text">Price : {{product.price | currency:'INR'}}</p>
+        <p class="card-text">Type : {{product.type }}</p>
+        Rating : <p-rating [ngModel]="product.rating" [readonly]="true" [stars]="5" [cancel]="false"></p-rating>
+        <button type="button" (click)="AddToCart()" class="btn btn-primary btn-sm">Add to Cart</button>        
     </div>
 </div>

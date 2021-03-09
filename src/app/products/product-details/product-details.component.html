@@ -1,0 +1,11 @@
+<div class="card">
+  <img class="card-img-top" style="max-height: 300px; max-width: 500px;" [src]="product.imageurl" [alt]="product.title">
+  <div class="card-body">
+    <h3 class="card-title">{{product.title}}</h3>
+    <p class="card-text">{{product.description}}</p>
+    <p class="card-text">{{product.price | currency:"INR"}}</p>
+    <p-rating [ngModel]="product.rating" [readonly]="true" [stars]="5" [cancel]="false"></p-rating>
+    <!-- <button type="button" routerLink="/products" class="btn btn-secondary">Back</button> -->
+    <button type="button" (click)="Navigate()" class="btn btn-secondary">Back</button>
+  </div>
+</div>
