@@ -1,1 +1,34 @@
-<p>products-manager works!</p>
+<div class="panel">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-2">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        {{time|date:'MM-dd-yyyy hh:mm:s'}} | {{counter}}
+                    </li>
+                    <li class="list-group-item">
+                        {{message}}
+                    </li>
+                    <li class="list-group-item">
+                        <a routerLink="add">Add Product</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a routerLink="58585855">Wrong Product</a>
+                    </li>
+                    <li class="list-group-item" *ngFor="let product of productsList">
+                        <a [routerLink]="[product.id]">{{product.title}}</a>
+                        <button class="close" type="button" aria-label="Close">
+                            <span aria-hidden="true">x</span>
+                        </button>
+                    </li>
+                    
+                </ul>
+            </div>
+            <div class="col-md-10">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p-toast position="top-right" key="tr"></p-toast>

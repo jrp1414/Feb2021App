@@ -16,10 +16,15 @@ export class ProductDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     // console.log(this.route.snapshot.params.id);
-    this.product = this.ps.getProduct(this.route.snapshot.params.id);
+    // this.product = this.ps.getProduct(this.route.snapshot.params.id);
+    this.route.params.subscribe((p) => {
+      this.product = this.ps.getProduct(p.id);
+    });
     // console.log(this.route.snapshot.params);
+    // this.route.queryParams.subscribe
     // console.log(this.route.snapshot.queryParams);
     // console.log(this.route.snapshot.fragment);
+    // this.route.fragment.subscribe()
   }
 
   Navigate() {

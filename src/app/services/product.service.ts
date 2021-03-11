@@ -16,7 +16,7 @@ export class ProductService {
   notify: EventEmitter<string> = new EventEmitter();
 
   getProducts() {
-    this.logger.log(this.productList.length + " products being returned");
+    // this.logger.log(this.productList.length + " products being returned");
     return this.productList; //Will write some code to fetch it from backend
   }
 

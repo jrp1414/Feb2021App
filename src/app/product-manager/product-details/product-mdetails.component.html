@@ -1,0 +1,11 @@
+<div class="card" style="border-color:darkblue;">
+  <img class="card-img-top" [src]="product.imageurl" style="max-width: 300px;max-width: 300px;" [alt]="product.title">
+  <div class="card-body">
+    <h4 class="card-title">{{product.title}}</h4>
+    <p class="card-text">{{product.description}}</p>
+    <p class="card-text">{{product.type}}</p>
+    <p class="card-text">{{product.price}}</p>
+    <p-rating [ngModel]="product.rating" [readonly]="true" [stars]="5" [cancel]="false"></p-rating>    
+    <button type="button" [routerLink]="['/productsmanager',product.id,'edit']" class="btn btn-primary">Edit</button>
+  </div>
+</div>

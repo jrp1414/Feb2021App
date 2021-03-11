@@ -26,6 +26,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductDetailsComponent } from './products/product-details/product-details.component';
 import { PrimengModule } from './shared/primeng/primeng.module';
+import { ProductManagerModule } from './product-manager/product-manager.module';
+import { MessageService } from 'primeng/api';
 
 const routes: Routes = [
   { path: "home", component: DashboardComponent },
@@ -61,13 +63,14 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    PrimengModule,
-    BrowserAnimationsModule,
     MaterialModule,
+    PrimengModule,    
+    ProductManagerModule, 
     RouterModule.forRoot(routes)
   ],
   providers: [
     LoggerService,
+    MessageService
     // ProductService  
   ],
   bootstrap: [AppComponent]
