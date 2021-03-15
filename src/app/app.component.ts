@@ -24,7 +24,7 @@ import { ProductService } from './services/product.service';
   ],
   providers:[
     // ProductService
-    MessageService
+    // MessageService
   ]
   // encapsulation: ViewEncapsulation.ShadowDom
 })

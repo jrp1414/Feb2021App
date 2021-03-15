@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { StringInterpolationComponent } from './string-interpolation/string-interpolation.component';
@@ -28,12 +28,19 @@ import { ProductDetailsComponent } from './products/product-details/product-deta
 import { PrimengModule } from './shared/primeng/primeng.module';
 import { ProductManagerModule } from './product-manager/product-manager.module';
 import { MessageService } from 'primeng/api';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCardModule } from '@angular/material/card';
 
 const routes: Routes = [
   { path: "home", component: DashboardComponent },
   { path: "products", component: ProductsComponent },
   // { path: "productdetails/:id/:title", component: ProductDetailsComponent },
   { path: "productdetails/:id", component: ProductDetailsComponent },
+  { path: "signup", component: SignUpComponent },
   { path: "", component: DashboardComponent },
   // { path: "**", redirectTo: "home" },
 ];
@@ -58,14 +65,15 @@ const routes: Routes = [
     TempProductsComponent,
     NavigationComponent,
     DashboardComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ProductManagerModule,
     MaterialModule,
     PrimengModule,    
-    ProductManagerModule, 
     RouterModule.forRoot(routes)
   ],
   providers: [

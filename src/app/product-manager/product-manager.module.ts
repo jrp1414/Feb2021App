@@ -40,7 +40,7 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   providers:[
-    MessageService
+    
   ]
 })
 export class ProductManagerModule { }

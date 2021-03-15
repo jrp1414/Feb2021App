@@ -15,9 +15,10 @@ export class ProductGuardService implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     let product = this.ps.getProduct(route.params.id);
     if (product) {
-      this.messageService.add({ severity: 'error', summary: 'Invalid Product', detail: 'Unable to find product' });
+      
       return true;
     }
+    this.messageService.add({ severity: 'error', summary: 'Invalid Product', detail: 'Unable to find product' });
     this.router.navigate(['/productsmanager/notfound']);
     return false;
   }
