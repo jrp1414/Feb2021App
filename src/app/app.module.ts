@@ -34,6 +34,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
+import { MustMatchDirective } from './shared/directives/must-match.directive';
 
 const routes: Routes = [
   { path: "home", component: DashboardComponent },
@@ -66,7 +67,8 @@ const routes: Routes = [
     NavigationComponent,
     DashboardComponent,
     ProductDetailsComponent,
-    SignUpComponent
+    SignUpComponent,
+    MustMatchDirective
   ],
   imports: [
     BrowserModule,
