@@ -1,1 +1,27 @@
-<p>product-add works!</p>
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+        <div class="col-md-4">
+            <mat-form-field appearance="fill">
+                <mat-label>Title</mat-label>
+                <input matInput type="text" formControlName="title" />
+            </mat-form-field>
+        </div>
+        <div class="col-md-4">
+            <mat-form-field appearance="fill">
+                <mat-label>Type</mat-label>
+                <mat-select formControlName="type">
+                  <mat-option *ngFor="let category of categories" [value]="category.type">{{category.type}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+        </div>
+        <div class="col-md-4">
+            <mat-form-field appearance="fill">
+              <mat-label>Description</mat-label>
+              <textarea matInput ></textarea>
+            </mat-form-field>
+          </div>
+    </div>
+    <div class="row">
+        <button type="submit" mat-raised-button color="primary">Submit</button>
+    </div>
+</form>

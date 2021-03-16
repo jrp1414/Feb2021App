@@ -8,7 +8,7 @@ import { MaterialModule } from '../shared/material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PrimengModule } from '../shared/primeng/primeng.module';
 import { Routes, RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductGuardService } from './services/product-guard.service';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MessageService } from 'primeng/api';
@@ -37,6 +37,7 @@ const routes: Routes = [
     FormsModule,
     MaterialModule,
     PrimengModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
   providers:[
