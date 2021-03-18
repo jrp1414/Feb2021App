@@ -18,7 +18,7 @@ export class ProductAddComponent implements OnInit {
   categories: any[] = [];
   @Input() available: boolean;
   constructor(private ps: ProductService) {
-    
+
   }
 
   ngOnInit(): void {
@@ -33,22 +33,26 @@ export class ProductAddComponent implements OnInit {
       availibility: new FormControl(), // toggle slider
       safeFor: new FormControl(), // Radio
       qualityScore: new FormControl(), // Slider
-      imageUrl:new FormControl()
+      imageUrl: new FormControl(),
+      tags: new FormControl()
     });
 
+    this.productForm.get("imageUrl").valueChanges.subscribe(val => this.imageUrlDisplay = val);
+
   }
-  imageUrlDisplay:string="";
+  imageUrlDisplay: string = "";
   onSubmit() {
     console.log(this.productForm.value);
   }
 
-formatLabel(value: number) {
+  formatLabel(value: number) {
     if (value >= 100) {
       return Math.round(100);
     }
 
     return value;
   }
+
 
 
 

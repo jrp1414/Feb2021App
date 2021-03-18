@@ -54,12 +54,16 @@
       <mat-slider thumbLabel formControlName="qualityScore" [displayWith]="formatLabel" tickInterval="1000" min="1" max="100"></mat-slider>
     </div>
     <div class="col-md-4">
+      <p-chips formControlName="tags" separator=","></p-chips>
+    </div>
+    <div class="col-md-4">
       <mat-form-field appearance="fill">
         <mat-label>Image URL</mat-label>
-        <input matInput type="text" formControlName="imageUrl" [(ngModel)]="imageUrlDisplay" />
+        <input matInput type="text" formControlName="imageUrl" />
       </mat-form-field>
       <img [src]="imageUrlDisplay" style="max-width: 200px; max-height: 200px;" alt="">
-    </div>
+    </div>    
+    
   </div>  
   <div class="row">
     <button type="submit" mat-raised-button color="primary">Submit</button>
