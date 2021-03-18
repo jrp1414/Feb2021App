@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { Observable } from 'rxjs';
+import { startWith, map } from 'rxjs/operators';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -10,28 +15,41 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class ProductAddComponent implements OnInit {
   productForm: FormGroup;
-  categories:any[] = [];
-  constructor(private ps:ProductService) { }
+  categories: any[] = [];
+  @Input() available: boolean;
+  constructor(private ps: ProductService) {
+    
+  }
 
   ngOnInit(): void {
     this.categories = this.ps.getCategories();
     this.productForm = new FormGroup({
       title: new FormControl(),
-      type: new FormControl(), //
-      description:new FormControl(),
-      releaseDate:new FormControl(),
-      rating:new FormControl(),
-      tags:new FormControl(),
-      price:new FormControl(),
-      availibility:new FormControl(), // toggle slider
-      safeFor:new FormControl(), // Radio
-      qualityMarks: new FormControl() // Slider
+      type: new FormControl(), //drop down
+      description: new FormControl(), //Text Area
+      releaseDate: new FormControl(), // Date Picker
+      rating: new FormControl(), // Rating
+      price: new FormControl(), // Currency
+      availibility: new FormControl(), // toggle slider
+      safeFor: new FormControl(), // Radio
+      qualityScore: new FormControl(), // Slider
+      imageUrl:new FormControl()
     });
 
   }
-
+  imageUrlDisplay:string="";
   onSubmit() {
     console.log(this.productForm.value);
   }
+
+formatLabel(value: number) {
+    if (value >= 100) {
+      return Math.round(100);
+    }
+
+    return value;
+  }
+
+
 
 }

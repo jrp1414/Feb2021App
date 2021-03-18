@@ -1,27 +1,67 @@
 <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
-    <div class="row">
-        <div class="col-md-4">
-            <mat-form-field appearance="fill">
-                <mat-label>Title</mat-label>
-                <input matInput type="text" formControlName="title" />
-            </mat-form-field>
-        </div>
-        <div class="col-md-4">
-            <mat-form-field appearance="fill">
-                <mat-label>Type</mat-label>
-                <mat-select formControlName="type">
-                  <mat-option *ngFor="let category of categories" [value]="category.type">{{category.type}}</mat-option>
-                </mat-select>
-              </mat-form-field>
-        </div>
-        <div class="col-md-4">
-            <mat-form-field appearance="fill">
-              <mat-label>Description</mat-label>
-              <textarea matInput ></textarea>
-            </mat-form-field>
-          </div>
+  <div class="row">
+    <div class="col-md-4">
+      <mat-form-field appearance="fill">
+        <mat-label>Title</mat-label>
+        <input matInput type="text" formControlName="title" />
+      </mat-form-field>
     </div>
-    <div class="row">
-        <button type="submit" mat-raised-button color="primary">Submit</button>
+    <div class="col-md-4">
+      <mat-form-field appearance="fill">
+        <mat-label>Type</mat-label>
+        <mat-select formControlName="type">
+          <mat-option *ngFor="let category of categories" [value]="category.type">{{category.type}}</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
+    <div class="col-md-4">
+      <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea formControlName="description" matInput></textarea>
+      </mat-form-field>
+    </div>
+    <div class="col-md-4">
+      <mat-form-field appearance="fill">
+        <mat-label>Release Date</mat-label>
+        <input matInput formControlName="releaseDate" [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="col-md-4">
+      <mat-label>Rating</mat-label>
+      <p-rating [cancel]="false" formControlName="rating"></p-rating>
+    </div>
+    <div class="col-md-4">
+      <mat-form-field appearance="fill">
+        <mat-label>Price</mat-label>
+        <input matInput formControlName="price" type="number" class="example-right-align">
+        <span matPrefix>₹&nbsp;</span>
+        <span matSuffix>.00</span>
+      </mat-form-field>
+    </div>
+    <div class="col-md-4">
+      <mat-slide-toggle formControlName="availibility">Available for Sale</mat-slide-toggle>
+    </div>
+    <div class="col-md-4">
+      <mat-radio-group formControlName="safeFor" aria-label="Product Safe for">
+        <mat-radio-button value="1">Kids</mat-radio-button>
+        <mat-radio-button value="2">Adults</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div class="col-md-4">
+      <mat-label>Quality Score</mat-label>
+      <mat-slider thumbLabel formControlName="qualityScore" [displayWith]="formatLabel" tickInterval="1000" min="1" max="100"></mat-slider>
+    </div>
+    <div class="col-md-4">
+      <mat-form-field appearance="fill">
+        <mat-label>Image URL</mat-label>
+        <input matInput type="text" formControlName="imageUrl" [(ngModel)]="imageUrlDisplay" />
+      </mat-form-field>
+      <img [src]="imageUrlDisplay" style="max-width: 200px; max-height: 200px;" alt="">
+    </div>
+  </div>  
+  <div class="row">
+    <button type="submit" mat-raised-button color="primary">Submit</button>
+  </div>
 </form>
