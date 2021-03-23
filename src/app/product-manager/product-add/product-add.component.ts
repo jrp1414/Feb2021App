@@ -1,6 +1,6 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { Observable } from 'rxjs';
@@ -34,7 +34,7 @@ export class ProductAddComponent implements OnInit {
       safeFor: new FormControl(), // Radio
       qualityScore: new FormControl(), // Slider
       imageUrl: new FormControl(),
-      tags: new FormControl()
+      tags: new FormControl([],Validators.required)
     });
 
     this.productForm.get("imageUrl").valueChanges.subscribe(val => this.imageUrlDisplay = val);
