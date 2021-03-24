@@ -16,7 +16,15 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class ProductAddComponent implements OnInit {
   productForm: FormGroup;
-  imageUrls: FormArray = this.fb.array([this.fb.control("")]);
+  regEx = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
+  imageUrls: FormArray = this.fb.array([this.fb.control("", Validators.pattern(this.regEx))]);
+  sellerAddresses: FormArray = this.fb.array([this.fb.group({
+    AddLine1: ["", Validators.required],
+    AddLine2: "",
+    AddLine3: "",
+    City: "",
+    State: ""
+  })]);
   categories: any[] = [];
   @Input() available: boolean;
   constructor(private ps: ProductService, private fb: FormBuilder, private toast: MessageService) {
@@ -26,9 +34,13 @@ export class ProductAddComponent implements OnInit {
   ngOnInit(): void {
     this.categories = this.ps.getCategories();
     this.productForm = this.fb.group({
-      title: "",
+      // title: new FormControl("",Validators.required),
+      // title: new FormControl("",[Validators.required,Validators.minLength(3)]),
+      // title: ["",Validators.required],
+      title: ["", [Validators.required, Validators.minLength(3)]],
       type: "", //drop down
       description: "", //Text Area
+      // releaseDate: ["",Validators.required], // Date Picker
       releaseDate: "", // Date Picker
       rating: "", // Rating
       price: "", // Currency
@@ -38,20 +50,24 @@ export class ProductAddComponent implements OnInit {
       // imageUrl: "",
       imageurls: this.imageUrls,
       tags: [],
-      sellerAddress: this.fb.group({
-        AddLine1: "",
-        AddLine2: "",
-        AddLine3: "",
-        City: "",
-        State: ""
-      })
+      sellers: this.sellerAddresses
     });
 
     // this.productForm.get("imageUrl").valueChanges.subscribe(val => this.imageUrlDisplay = val);
+    this.productForm.get("availibility").valueChanges.subscribe(val => {
+      let releaseDate = this.productForm.get("releaseDate");
+      if (val) {
+        releaseDate.setValidators([Validators.required]);
+      } else {
+        releaseDate.clearValidators();
+      }
+      releaseDate.updateValueAndValidity();
+    });
 
   }
   imageUrlDisplay: string = "";
   onSubmit() {
+    console.log(this.productForm);
     this.ps.addProduct(this.productForm.value);
   }
 
@@ -59,7 +75,7 @@ export class ProductAddComponent implements OnInit {
     // let imgUrls = <FormArray>this.productForm.get("imageurls");
     let imgUrls = this.productForm.get("imageurls") as FormArray;
     if (imgUrls.controls.length < 4) {
-      imgUrls.push(this.fb.control(""));
+      imgUrls.push(this.fb.control("", Validators.pattern(this.regEx)));
     } else {
       this.toast.add({
         severity: "info",
@@ -69,9 +85,34 @@ export class ProductAddComponent implements OnInit {
     }
   }
 
-  DeleteImageUrl(index){
+  DeleteImageUrl(index) {
     let imgUrls = this.productForm.get("imageurls") as FormArray;
     imgUrls.removeAt(index);
+  }
+
+  addSellerAddress() {
+    // let imgUrls = <FormArray>this.productForm.get("imageurls");
+    let sellers = this.productForm.get("sellers") as FormArray;
+    if (sellers.controls.length < 3) {
+      sellers.push(this.fb.group({
+        AddLine1: ["", Validators.required],
+        AddLine2: "",
+        AddLine3: "",
+        City: "",
+        State: ""
+      }));
+    } else {
+      this.toast.add({
+        severity: "info",
+        summary: "Limit reached",
+        detail: "Maximum 3 Sellers to be added"
+      })
+    }
+  }
+
+  DeleteSellerAddress(index) {
+    let sellers = this.productForm.get("sellers") as FormArray;
+    sellers.removeAt(index);
   }
 
   formatLabel(value: number) {

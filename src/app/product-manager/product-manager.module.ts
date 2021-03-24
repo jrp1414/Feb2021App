@@ -12,11 +12,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductGuardService } from './services/product-guard.service';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MessageService } from 'primeng/api';
+import { ProductDeactivateGuard } from './services/product-candeactivate.guard';
 
 const routes: Routes = [
   {
     path: "productsmanager", component: ProductsManagerComponent, children: [
-      { path: "add", component: ProductAddComponent },
+      { path: "add", component: ProductAddComponent, canDeactivate:[ProductDeactivateGuard] },
       { path: "notfound", component: NotFoundComponent },
       { path: ":id", component: ProductMDetailsComponent, canActivate:[ProductGuardService] },
       { path: ":id/edit", component: ProductEditComponent },      
