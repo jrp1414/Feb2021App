@@ -59,13 +59,56 @@
       <mat-error *ngIf="productForm.get('tags').touched && productForm.get('tags').errors?.required">required
       </mat-error>
     </div>
-    
-    <div class="col-md-4">
+  </div>
+  <div formArrayName="imageurls" class="row" style="margin-top: 10px;">
+    <div *ngFor="let img of imageUrls.controls;let i = index;" class="col-md-4">
       <mat-form-field appearance="fill">
         <mat-label>Image URL</mat-label>
-        <input matInput type="text" formControlName="imageUrl" />
+        <input matInput type="text" [formControlName]="i" />
       </mat-form-field>
-      <img [src]="imageUrlDisplay" style="max-width: 200px; max-height: 200px;" alt="">
+      <button mat-icon-button (click)="DeleteImageUrl(i)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+    <div class="col-md-1">
+      <button type="button" (click)="addImageUrl()" class="btn btn-primary">Add Image</button>
+    </div>
+  </div>
+  <div class="card" formGroupName="sellerAddress">
+    <div class="card-header">
+      Address
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <mat-form-field appearance="fill">
+          <mat-label>Line 1</mat-label>
+          <input matInput type="text" formControlName="AddLine1" />
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="fill">
+          <mat-label>Line 2</mat-label>
+          <input matInput type="text" formControlName="AddLine2" />
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="fill">
+          <mat-label>Line 3</mat-label>
+          <input matInput type="text" formControlName="AddLine3" />
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="fill">
+          <mat-label>City</mat-label>
+          <input matInput type="text" formControlName="City" />
+        </mat-form-field>
+      </div>
+      <div class="col-md-4">
+        <mat-form-field appearance="fill">
+          <mat-label>State</mat-label>
+          <input matInput type="text" formControlName="State" />
+        </mat-form-field>
+      </div>
     </div>
   </div>
   <div class="row">

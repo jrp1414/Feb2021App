@@ -28,4 +28,11 @@ export class ProductService {
   getProduct(id: number): Product {
     return this.productList.find((p) => p.id == id);
   }
+
+  addProduct(product: Product) {
+    let maxId = Math.max.apply(Math, this.productList.map(p => p.id));
+    product.id = maxId + 1;
+    this.productList.push(product);
+    console.log(this.productList);
+  }
 }
