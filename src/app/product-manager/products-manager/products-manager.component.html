@@ -8,15 +8,14 @@
                     </li>
                     <li class="list-group-item" *ngFor="let product of filteredProducts">
                         <a [routerLink]="[product.id]">{{product.title}}</a>
-                        <button class="close" type="button" aria-label="Close">
-                            <span aria-hidden="true">x</span>
+                        <button mat-icon-button>
+                            <mat-icon>delete</mat-icon>
                         </button>
                     </li>
 
                 </ul>
                 <mat-paginator [length]="productsList.length" [pageIndex]="pageIndex" [pageSize]="pageSize"
-                    [pageSizeOptions]="[5, 10, 25, 100]" 
-                    (page)="pageEvent = getFilteredData($event)">
+                    [pageSizeOptions]="[5, 10, 25, 100]" (page)="pageEvent = getFilteredData($event)">
                 </mat-paginator>
             </div>
             <div class="col-md-9">

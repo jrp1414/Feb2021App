@@ -4,23 +4,40 @@ export class Product {
     title: string;
     type: string;
     description: string;
-    releaseDate:Date;
-    availibility:boolean;
-    safeFor:number;
-    qualityScore:number;
+    releaseDate: Date;
+    availibility: boolean;
+    safeFor: number;
+    qualityScore: number;
+    Tags: Tag[];
     tags:string[];
-    sellers?: SellerAddress[];
+    Addresses?: SellerAddress[];
     seller?: SellerAddress;
     price: number;
     rating: number;
-    imageurl?: string;
-    imageurls?: string[];    
+    imageurls?: string[];
+    ImageUrls?: ImageUrl[];
+    typeId:number;
 }
 
-export class SellerAddress{
-    AddLine1:string;
-	AddLine2:string;
-	AddLine3:string;
-	City:string;
-	State:string;
-} 
+export class SellerAddress {
+    id: number;
+    AddLine1: string;
+    AddLine2: string;
+    AddLine3: string;
+    City: string;
+    State: string;
+}
+
+
+export class TypeMaster {
+    id?: number;
+    Type: string;
+}
+export class Tag {
+    id?: number;
+    tag: string;
+}
+export class ImageUrl {
+    id?: number;
+    imageUrl: string;
+}

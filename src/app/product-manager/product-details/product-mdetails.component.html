@@ -1,5 +1,9 @@
 <div class="card" style="border-color:darkblue;">
-  <img class="card-img-top" [src]="product.imageurl" style="max-width: 300px;max-width: 300px;" [alt]="product.title">
+  <p-carousel [value]="product.ImageUrls" [numVisible]="3" [numScroll]="3" [circular]="false" [responsiveOptions]="responsiveOptions">
+    <ng-template let-img pTemplate="item">
+      <img class="card-img-top"  style="max-height: 300px; max-width: 300px;" [src]="img.imageUrl" [alt]="product.title">
+    </ng-template>
+</p-carousel>
   <div class="card-body">
     <h4 class="card-title">{{product.title}}</h4>
     <p class="card-text">{{product.description}}</p>

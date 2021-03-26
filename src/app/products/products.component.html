@@ -18,7 +18,7 @@
             </div> -->
             </div>
         </div>
-        <div class="col-md-6">
+        <!-- <div class="col-md-6">
             <div class="row">
                 <div class="col-md-2">
                     Category:
@@ -28,7 +28,7 @@
                         (change)="changeSelection()" [value]="category.type"> {{category.type}}
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="col-md-3">
             <div class="row">
                 <div class="col-md-4">
@@ -49,7 +49,7 @@
     </div>
     <div class="row">
         <div class="col-md-3"
-            *ngFor="let prod of products | filter : filterText : selectedCategories :'title' | sort:sortBy">
+            *ngFor="let prod of products | sort:sortBy">
             <!-- <product-thumbnail [routerLink]="['/productdetails',prod.id,prod.title]" [pd]="prod" (addtocart)="Received($event)"></product-thumbnail> -->
             <!-- <product-thumbnail [routerLink]="['/productdetails',prod.id,{title:prod.title,rating:prod.rating}]"
                 [pd]="prod" (addtocart)="Received($event)"></product-thumbnail> -->

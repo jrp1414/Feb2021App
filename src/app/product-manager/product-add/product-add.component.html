@@ -13,8 +13,8 @@
     <div class="col-md-4">
       <mat-form-field appearance="fill">
         <mat-label>Type</mat-label>
-        <mat-select formControlName="type">
-          <mat-option *ngFor="let category of categories" [value]="category.type">{{category.type}}</mat-option>
+        <mat-select formControlName="typeId">
+          <mat-option *ngFor="let category of categories" [value]="category.id">{{category.Type}}</mat-option>
         </mat-select>
       </mat-form-field>
     </div>

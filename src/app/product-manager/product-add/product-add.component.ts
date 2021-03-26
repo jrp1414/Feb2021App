@@ -3,9 +3,11 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
+import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
+import { TypeMaster } from 'src/app/services/product.model';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -25,35 +27,30 @@ export class ProductAddComponent implements OnInit {
     City: "",
     State: ""
   })]);
-  categories: any[] = [];
+  categories: TypeMaster[] = [];
   @Input() available: boolean;
-  constructor(private ps: ProductService, private fb: FormBuilder, private toast: MessageService) {
+  constructor(private ps: ProductService, private fb: FormBuilder, 
+    private toast: MessageService,private router:Router) {
 
   }
 
   ngOnInit(): void {
-    this.categories = this.ps.getCategories();
+    this.ps.getCategories().subscribe(resp => this.categories = <TypeMaster[]>resp);
     this.productForm = this.fb.group({
-      // title: new FormControl("",Validators.required),
-      // title: new FormControl("",[Validators.required,Validators.minLength(3)]),
-      // title: ["",Validators.required],
       title: ["", [Validators.required, Validators.minLength(3)]],
-      type: "", //drop down
+      typeId: "", //drop down
       description: "", //Text Area
-      // releaseDate: ["",Validators.required], // Date Picker
-      releaseDate: "", // Date Picker
+      releaseDate: ["", Validators.required], // Date Picker
       rating: "", // Rating
       price: "", // Currency
       availibility: "", // toggle slider
       safeFor: "", // Radio
       qualityScore: "", // Slider
-      // imageUrl: "",
       imageurls: this.imageUrls,
       tags: [],
       sellers: this.sellerAddresses
     });
 
-    // this.productForm.get("imageUrl").valueChanges.subscribe(val => this.imageUrlDisplay = val);
     this.productForm.get("availibility").valueChanges.subscribe(val => {
       let releaseDate = this.productForm.get("releaseDate");
       if (val) {
@@ -67,12 +64,19 @@ export class ProductAddComponent implements OnInit {
   }
   imageUrlDisplay: string = "";
   onSubmit() {
-    console.log(this.productForm);
-    this.ps.addProduct(this.productForm.value);
+    // console.log(this.productForm.value);
+    this.ps.addProduct(this.productForm.value).subscribe(resp=>{
+      this.toast.add({
+        severity: "info",
+        summary: "Product Added",
+        detail: "Product successfully added"
+      });
+      this.ps.notify.emit();
+      this.router.navigate(["/productsmanager"]);
+    });
   }
 
   addImageUrl() {
-    // let imgUrls = <FormArray>this.productForm.get("imageurls");
     let imgUrls = this.productForm.get("imageurls") as FormArray;
     if (imgUrls.controls.length < 4) {
       imgUrls.push(this.fb.control("", Validators.pattern(this.regEx)));

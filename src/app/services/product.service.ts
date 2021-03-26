@@ -1,6 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { LoggerService } from './logger.service';
-import { Product } from './product.model';
+import { ImageUrl, Product, Tag } from './product.model';
 import * as productsJson from "./products.json";
 
 @Injectable({
@@ -9,30 +10,36 @@ import * as productsJson from "./products.json";
 export class ProductService {
 
   private productList: Product[];
-  constructor(private logger: LoggerService) {
+  constructor(private logger: LoggerService, private http: HttpClient) {
     this.productList = (productsJson as any).default;
   }
-
-  notify: EventEmitter<string> = new EventEmitter();
+  baseUrl: string = "http://localhost:64403/";
+  notify: EventEmitter<boolean> = new EventEmitter();
 
   getProducts() {
-    // this.logger.log(this.productList.length + " products being returned");
-    return this.productList; //Will write some code to fetch it from backend
+    return this.http.get(this.baseUrl + "GetProducts");
   }
 
   getCategories() {
-    let uniqueCategories = [...new Set(this.productList.map(item => item.type))];
-    return [...new Set(uniqueCategories.map(item => { return { type: item, isChecked: false } }))];
+    return this.http.get(this.baseUrl + "GetTypes");
   }
 
-  getProduct(id: number): Product {
-    return this.productList.find((p) => p.id == id);
+  getProduct(id: number) {
+    return this.http.get(this.baseUrl + "GetProduct?productId=" + id);
   }
 
   addProduct(product: Product) {
-    let maxId = Math.max.apply(Math, this.productList.map(p => p.id));
-    product.id = maxId + 1;
-    this.productList.push(product);
-    console.log(this.productList);
+    let imgs: ImageUrl[] = [];
+    product.imageurls.forEach(i => {
+      imgs.push({ imageUrl: i });
+    });
+    product.ImageUrls = imgs;
+    let tags: Tag[] = [];
+    product.tags.forEach(i => {
+      tags.push({ tag: i });
+    });
+    product.Tags = tags;
+    
+    return this.http.post(this.baseUrl+"AddProduct",product);
   }
 }

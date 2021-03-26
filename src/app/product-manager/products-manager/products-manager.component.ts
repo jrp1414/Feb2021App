@@ -15,7 +15,7 @@ export class ProductsManagerComponent implements OnInit, OnDestroy {
   productsList: Product[] = [];
   filteredProducts: Product[] = [];
   constructor(private ps: ProductService, private messageService: MessageService) {
-    this.productsList = this.ps.getProducts()
+
   }
   numSubs: o.Subscription = new o.Subscription();
   counter: number;
@@ -31,7 +31,15 @@ export class ProductsManagerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.filteredProducts = this.productsList.slice((this.pageIndex * this.pageSize), (this.pageIndex * this.pageSize + this.pageSize));
+    this.refreshProducts();
+    this.ps.notify.subscribe(flag => this.refreshProducts());
+  }
+
+  refreshProducts() {
+    this.ps.getProducts().subscribe(resp => {
+      this.productsList = <Product[]>resp;
+      this.filteredProducts = this.productsList.slice((this.pageIndex * this.pageSize), (this.pageIndex * this.pageSize + this.pageSize));
+    });
   }
   message: string = "";
 
