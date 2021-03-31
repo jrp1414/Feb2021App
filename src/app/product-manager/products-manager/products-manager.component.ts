@@ -14,7 +14,7 @@ import { PageEvent } from '@angular/material/paginator';
 export class ProductsManagerComponent implements OnInit, OnDestroy {
   productsList: Product[] = [];
   filteredProducts: Product[] = [];
-  constructor(private ps: ProductService, private messageService: MessageService) {
+  constructor(private ps: ProductService, private toast: MessageService) {
 
   }
   numSubs: o.Subscription = new o.Subscription();
@@ -44,7 +44,13 @@ export class ProductsManagerComponent implements OnInit, OnDestroy {
   message: string = "";
 
   ShowSuccess() {
-    this.messageService.add({ severity: 'success', summary: 'Invalid Product', detail: 'Unable to find product' });
+    this.toast.add({ severity: 'success', summary: 'Invalid Product', detail: 'Unable to find product' });
+  }
+  DeleteProduct(product: Product) {
+    this.ps.deleteProduct(product.id).subscribe(resp => {
+      this.refreshProducts();
+      this.toast.add({ severity: 'success', summary: 'Deleted Product', detail: `Deleted ${product.title} successfully.` });      
+    });
   }
   ngOnDestroy(): void {
     // this.numSubs.unsubscribe();

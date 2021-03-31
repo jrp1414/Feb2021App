@@ -1,6 +1,6 @@
 
 export class Product {
-    id: number;
+    id?:number;
     title: string;
     type: string;
     description: string;
@@ -20,7 +20,7 @@ export class Product {
 }
 
 export class SellerAddress {
-    id: number;
+    id?: number;
     AddLine1: string;
     AddLine2: string;
     AddLine3: string;

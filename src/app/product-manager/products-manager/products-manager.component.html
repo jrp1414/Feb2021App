@@ -8,7 +8,7 @@
                     </li>
                     <li class="list-group-item" *ngFor="let product of filteredProducts">
                         <a [routerLink]="[product.id]">{{product.title}}</a>
-                        <button mat-icon-button>
+                        <button mat-icon-button (click)="DeleteProduct(product)">
                             <mat-icon>delete</mat-icon>
                         </button>
                     </li>

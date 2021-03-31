@@ -1,5 +1,5 @@
 <div class="card" style="max-height: 350px; max-width: 350px;">
-    <img class="card-img-top" [src]="product.imageurl" style="max-width: 350px;max-height: 150px;">
+    <img *ngFor="let image of product.imageurls" class="card-img-top" [src]="image" style="max-width: 150px;max-height: 150px;">
     <div class="card-body">
         <h4 class="card-title">{{product.title | uppercase}}</h4>
         <p class="card-text">Price : {{product.price | currency:'INR'}}</p>

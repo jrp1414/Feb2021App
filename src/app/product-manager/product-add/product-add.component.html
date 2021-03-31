@@ -73,12 +73,13 @@
       <button mat-icon-button (click)="DeleteImageUrl(i)">
         <mat-icon>delete</mat-icon>
       </button>
+      <img [src]="img.value" style="max-width: 150px; max-height: 150px;" alt="">
     </div>
     <div class="col-md-1">
       <button type="button" (click)="addImageUrl()" class="btn btn-primary">Add Image</button>
     </div>
   </div>
-  <div formArrayName="sellers">
+  <div formArrayName="Addresses">
     <div class="card" *ngFor="let address of sellerAddresses.controls;let i=index" [formGroupName]="i"
       style="margin-top: 10px;">
       <div class="card-header">

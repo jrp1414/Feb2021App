@@ -48,7 +48,7 @@ export class ProductAddComponent implements OnInit {
       qualityScore: "", // Slider
       imageurls: this.imageUrls,
       tags: [],
-      sellers: this.sellerAddresses
+      Addresses: this.sellerAddresses
     });
 
     this.productForm.get("availibility").valueChanges.subscribe(val => {
@@ -96,7 +96,7 @@ export class ProductAddComponent implements OnInit {
 
   addSellerAddress() {
     // let imgUrls = <FormArray>this.productForm.get("imageurls");
-    let sellers = this.productForm.get("sellers") as FormArray;
+    let sellers = this.productForm.get("Addresses") as FormArray;
     if (sellers.controls.length < 3) {
       sellers.push(this.fb.group({
         AddLine1: ["", Validators.required],
@@ -115,7 +115,7 @@ export class ProductAddComponent implements OnInit {
   }
 
   DeleteSellerAddress(index) {
-    let sellers = this.productForm.get("sellers") as FormArray;
+    let sellers = this.productForm.get("Addresses") as FormArray;
     sellers.removeAt(index);
   }
 

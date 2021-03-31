@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { LoggerService } from './logger.service';
 import { ImageUrl, Product, Tag } from './product.model';
 import * as productsJson from "./products.json";
@@ -13,19 +14,20 @@ export class ProductService {
   constructor(private logger: LoggerService, private http: HttpClient) {
     this.productList = (productsJson as any).default;
   }
-  baseUrl: string = "http://localhost:64403/";
+  
   notify: EventEmitter<boolean> = new EventEmitter();
 
   getProducts() {
-    return this.http.get(this.baseUrl + "GetProducts");
+    // return this.http.get(environment.apiUrl + "GetProducts");
+    return this.http.get(`${environment.apiUrl}/GetProducts`);
   }
 
   getCategories() {
-    return this.http.get(this.baseUrl + "GetTypes");
+    return this.http.get(`${environment.apiUrl}/GetTypes`);
   }
 
   getProduct(id: number) {
-    return this.http.get(this.baseUrl + "GetProduct?productId=" + id);
+    return this.http.get(`${environment.apiUrl}/GetProduct?productId=${id}`);
   }
 
   addProduct(product: Product) {
@@ -40,6 +42,14 @@ export class ProductService {
     });
     product.Tags = tags;
     
-    return this.http.post(this.baseUrl+"AddProduct",product);
+    return this.http.post(`${environment.apiUrl}/AddProduct`,product);
+  }
+
+  editProduct(product: Product) {
+    return this.http.put(`${environment.apiUrl}/UpdateProduct`,product);
+  }
+
+  deleteProduct(productId: number) {
+    return this.http.delete(`${environment.apiUrl}/DeleteProduct?productId=${productId}`);
   }
 }
