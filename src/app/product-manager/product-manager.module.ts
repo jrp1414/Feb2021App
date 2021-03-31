@@ -13,13 +13,15 @@ import { ProductGuardService } from './services/product-guard.service';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MessageService } from 'primeng/api';
 import { ProductDeactivateGuard } from './services/product-candeactivate.guard';
+import { ProductsResolver } from './services/products.resolver';
+import { ProductDetailsResolver } from './services/productdetails.resolver';
 
 const routes: Routes = [
   {
-    path: "productsmanager", component: ProductsManagerComponent, children: [
+    path: "productsmanager", component: ProductsManagerComponent, resolve:{products:ProductsResolver}, children: [
       { path: "add", component: ProductAddComponent, canDeactivate:[ProductDeactivateGuard] },
       { path: "notfound", component: NotFoundComponent },
-      { path: ":id", component: ProductMDetailsComponent, canActivate:[ProductGuardService] },
+      { path: ":id", component: ProductMDetailsComponent, resolve:{product:ProductDetailsResolver}, canActivate:[ProductGuardService] },
       { path: ":id/edit", component: ProductEditComponent },      
     ]
   }

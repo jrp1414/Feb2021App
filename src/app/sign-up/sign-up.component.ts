@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 
 
@@ -23,10 +24,11 @@ import { UserService } from '../services/user.service';
 export class SignUpComponent implements OnInit, AfterViewInit {
   hide = true;
   states: string[] = [];
-  skills:string[]=[];
-  @ViewChild("Skills") Skills:string[];
+  skills: string[] = [];
+  @ViewChild("Skills") Skills: string[];
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService,
+    private router: Router) {
     this.states = this.userService.getStates();
     this.skills = this.userService.getSkills();
   }
@@ -49,7 +51,10 @@ export class SignUpComponent implements OnInit, AfterViewInit {
   //   console.log(form.value);
   // }
   onSubmit(value) {
-    console.log(value);
+    this.userService.signUp(value.value).subscribe(resp => {
+      this.router.navigate(["/login"]);
+    });
+    ;
   }
   Cities: any[] = [];
   StateChanged(st) {

@@ -9,6 +9,7 @@
       <a mat-list-item routerLink="products">Products</a>
       <a mat-list-item routerLink="productsmanager">Product Manager</a>
       <a mat-list-item routerLink="signup">SignUp</a>
+      <a mat-list-item routerLink="login">Log In</a>      
       <!-- <a mat-list-item routerLink="andvfshvbhb">Wrong URL</a> -->
     </mat-nav-list>
   </mat-sidenav>
@@ -21,6 +22,7 @@
     </mat-toolbar>
     <div class="row">
       <div class="col-md-12">
+        <p-progressBar *ngIf="loading" mode="indeterminate" [style]="{'height': '10px'}"></p-progressBar>
         <router-outlet></router-outlet>
       </div>
     </div>

@@ -5,6 +5,7 @@ import { ProductService } from 'src/app/services/product.service';
 import * as o from 'rxjs-compat';
 import { MessageService } from 'primeng/api';
 import { PageEvent } from '@angular/material/paginator';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -14,7 +15,10 @@ import { PageEvent } from '@angular/material/paginator';
 export class ProductsManagerComponent implements OnInit, OnDestroy {
   productsList: Product[] = [];
   filteredProducts: Product[] = [];
-  constructor(private ps: ProductService, private toast: MessageService) {
+  constructor(
+    private ps: ProductService,
+    private route: ActivatedRoute,
+    private toast: MessageService) {
 
   }
   numSubs: o.Subscription = new o.Subscription();
@@ -31,7 +35,10 @@ export class ProductsManagerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.refreshProducts();
+    this.route.data.subscribe(data => {
+      this.productsList = <Product[]>data.products;
+      this.filteredProducts = this.productsList.slice((this.pageIndex * this.pageSize), (this.pageIndex * this.pageSize + this.pageSize));
+    });
     this.ps.notify.subscribe(flag => this.refreshProducts());
   }
 
@@ -49,7 +56,7 @@ export class ProductsManagerComponent implements OnInit, OnDestroy {
   DeleteProduct(product: Product) {
     this.ps.deleteProduct(product.id).subscribe(resp => {
       this.refreshProducts();
-      this.toast.add({ severity: 'success', summary: 'Deleted Product', detail: `Deleted ${product.title} successfully.` });      
+      this.toast.add({ severity: 'success', summary: 'Deleted Product', detail: `Deleted ${product.title} successfully.` });
     });
   }
   ngOnDestroy(): void {

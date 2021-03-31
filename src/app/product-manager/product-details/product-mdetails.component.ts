@@ -32,9 +32,10 @@ export class ProductMDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     // this.product = this.ps.getProduct(this.route.snapshot.params.id);
-    this.route.params.subscribe((parms) => {
-      this.ps.getProduct(parms.id).subscribe(resp => this.product = <Product>resp);
-    });
+    // this.route.params.subscribe((parms) => {
+    //   this.ps.getProduct(parms.id).subscribe(resp => this.product = <Product>resp);
+    // });
+    this.route.data.subscribe(data => this.product = <Product>data);
   }
 
 }

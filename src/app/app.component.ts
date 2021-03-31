@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, RouterEvent } from '@angular/router';
 import { MessageService, PrimeNGConfig } from 'primeng/api';
 import { ProductService } from './services/product.service';
 
@@ -22,22 +23,27 @@ import { ProductService } from './services/product.service';
   styleUrls: [
     "./app.component.less"
   ],
-  providers:[
+  providers: [
     // ProductService
     // MessageService
   ]
   // encapsulation: ViewEncapsulation.ShadowDom
 })
 export class AppComponent {
-  constructor(private primengConfig: PrimeNGConfig,private messageService:MessageService) {
+
+  
+  constructor(private primengConfig: PrimeNGConfig,
+    private messageService: MessageService
+  ) {
 
   }
 
   ngOnInit() {
     this.primengConfig.ripple = true;
+    
   }
 
-  ShowSuccess(){
+  ShowSuccess() {
     this.messageService.add({ severity: 'success', summary: 'Invalid Product', detail: 'Unable to find product' });
   }
 }
