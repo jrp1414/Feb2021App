@@ -1,66 +1,21 @@
 <form #login="ngForm" (ngSubmit)="onSubmit(login.value)"class="container">
-        <h3>Sign Up</h3>
+        <h3>Log In</h3>
         <div class="row">
           <div class="col-md-4">
             <mat-form-field appearance="fill">
-              <mat-label>First Name</mat-label>
-              <input matInput required minlength="3" type="text" name="FirstName" #FirstName="ngModel" ngModel />
-              <!-- <mat-error *ngIf="FirstName.invalid">Enter First Name</mat-error> -->
-              <mat-error *ngIf="FirstName.errors?.required">Enter First Name</mat-error>
-              <mat-error *ngIf="FirstName.errors?.minlength">Minimum 3 characters required</mat-error>
+              <mat-label>Email Id</mat-label>
+              <input matInput required minlength="3" type="email" name="EmailId" #EmailId="ngModel" ngModel />
+              <mat-error *ngIf="EmailId.errors?.required">Enter Email Id</mat-error>              
             </mat-form-field>
           </div>
           <div class="col-md-4">
             <mat-form-field appearance="fill">
-              <mat-label>Last Name</mat-label>
-              <input matInput type="text" required name="LastName" #LastName="ngModel" ngModel>
-              <mat-error *ngIf="LastName.errors?.required">Enter Last Name</mat-error>
+              <mat-label>Password</mat-label>
+              <input matInput type="password" required name="Password" #Password="ngModel" ngModel>
+              <mat-error *ngIf="Password.errors?.required">Enter Password</mat-error>
             </mat-form-field>
           </div>
-          <div class="col-md-4">
-            <mat-form-field appearance="fill">
-              <mat-label>Address</mat-label>
-              <textarea matInput name="Address" ngModel></textarea>
-            </mat-form-field>
-          </div>
-          <div class="col-md-4">
-            <mat-form-field appearance="fill">
-              <mat-label>Email</mat-label>
-              <input matInput type="email" name="Email" required email #Email="ngModel" ngModel>
-              <mat-error *ngIf="Email.errors?.required">Enter Email</mat-error>
-              <mat-error *ngIf="Email.errors?.email">Invalid Email</mat-error>
-            </mat-form-field>
-          </div>
-          <div class="col-md-4">
-            <mat-form-field appearance="fill">
-              <mat-label>Enter your password</mat-label>
-              <input matInput name="Password" required ngModel [type]="hide ? 'password' : 'text'">
-              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                [attr.aria-pressed]="hide">
-                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-              </button>
-            </mat-form-field>
-          </div>
-          <div class="col-md-4">
-            <mat-form-field appearance="fill">
-              <mat-label>Confirm password</mat-label>
-              <input matInput name="ConfirmPassword" #ConfirmPassword="ngModel" required ngModel [type]="hide ? 'password' : 'text'">
-              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                [attr.aria-pressed]="hide">
-                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-              </button>
-              <mat-error *ngIf="ConfirmPassword.errors?.match">Both Passwords Not Matching</mat-error>
-            </mat-form-field>
-          </div>
-          <div class="col-md-4">
-            <mat-form-field appearance="fill">
-              <mat-label>Role</mat-label>
-              <mat-select name="RoleId" ngModel >
-                <mat-option value="1">Admin</mat-option>
-                <mat-option value="2">User</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-          <button mat-raised-button color="primary" type="submit">Submit</button>
+          
+          <button mat-raised-button color="primary" type="submit">Log In</button>
         </div>
       </form>

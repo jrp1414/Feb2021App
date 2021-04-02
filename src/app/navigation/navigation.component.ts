@@ -34,4 +34,8 @@ export class NavigationComponent implements OnInit {
     });
   }
 
+  LogOut(){
+    localStorage.clear();
+  }
+
 }

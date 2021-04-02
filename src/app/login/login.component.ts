@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -8,15 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() {
-    console.group("test","Test");
-   }
+  constructor(private userService: UserService) {
+    console.group("test", "Test");
+  }
 
   ngOnInit(): void {
   }
 
-  onSubmit(value){
-    console.group("test","Test");
+  onSubmit(value) {
+    this.userService.login(value).subscribe((resp:any) => {
+      localStorage.setItem("access_token",resp.access_token);
+      localStorage.setItem("role",resp.roles);
+      localStorage.setItem("user_name",resp.userName);
+    })
   }
 
 }

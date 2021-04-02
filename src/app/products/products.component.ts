@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { LoggerService } from '../services/logger.service';
 import { Product, TypeMaster } from '../services/product.model';
 import { ProductService } from '../services/product.service';
@@ -26,9 +27,12 @@ export class ProductsComponent {
   categories: TypeMaster[] = [];
   selectedCategories: TypeMaster[] = [];
   addedToCart: string[] = [];
-  constructor(private logger: LoggerService, private ps: ProductService) {
+  constructor(private logger: LoggerService, private ps: ProductService,
+    private toast:MessageService) {
     this.ps.getProducts().subscribe(resp=>{
       this.products = <Product[]>resp;
+    },(error)=>{
+      
     });
     this.ps.getCategories().subscribe(resp=>this.categories = <TypeMaster[]>resp);
   }

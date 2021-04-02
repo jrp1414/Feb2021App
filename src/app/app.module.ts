@@ -35,8 +35,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { MustMatchDirective } from './shared/directives/must-match.directive';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
+import { TokenInterceptor } from './services/token.interceptor';
+import { ErrorInterceptor } from './services/error.interceptor';
 
 const routes: Routes = [
   { path: "home", component: DashboardComponent },
@@ -80,12 +82,14 @@ const routes: Routes = [
     HttpClientModule,
     ProductManagerModule,
     MaterialModule,
-    PrimengModule,    
+    PrimengModule,
     RouterModule.forRoot(routes)
   ],
   providers: [
     LoggerService,
-    MessageService
+    MessageService,
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }    
     // ProductService  
   ],
   bootstrap: [AppComponent]

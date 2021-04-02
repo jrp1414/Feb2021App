@@ -46,7 +46,7 @@ export class ProductsManagerComponent implements OnInit, OnDestroy {
     this.ps.getProducts().subscribe(resp => {
       this.productsList = <Product[]>resp;
       this.filteredProducts = this.productsList.slice((this.pageIndex * this.pageSize), (this.pageIndex * this.pageSize + this.pageSize));
-    });
+    },(error)=>{console.log(error)});
   }
   message: string = "";
 
