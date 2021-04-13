@@ -1,0 +1,24 @@
+<p>web-worker works!</p>
+<button type="button" (click)="Test()" class="btn btn-primary">Test</button>
+<div class="row">
+    <div class="col-md-2">
+        <input type="text" [(ngModel)]="number" class="form-control"  placeholder="Enter Number">
+    </div>
+    <div class="col-md-2">
+        <button type="button" (click)="calcFib()" class="btn btn-primary">Calc Fibonacci</button>
+    </div>
+    <div class="col-md-2">
+        {{output}}
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2">
+        <input type="text" [(ngModel)]="wnumber" class="form-control"  placeholder="Enter Number">
+    </div>
+    <div class="col-md-2">
+        <button type="button" (click)="wcalcFib()" class="btn btn-primary">Calc Fibonacci Worker</button>
+    </div>
+    <div class="col-md-2">
+        {{woutput}}
+    </div>
+</div>

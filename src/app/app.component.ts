@@ -31,22 +31,23 @@ import { ProductService } from './services/product.service';
 })
 export class AppComponent {
 
-  
+
   constructor(private primengConfig: PrimeNGConfig,
     private messageService: MessageService
   ) {
 
   }
 
-  ngOnInit() {
-    this.primengConfig.ripple = true;
-    
-  }
+  
 
   ShowSuccess() {
     this.messageService.add({ severity: 'success', summary: 'Invalid Product', detail: 'Unable to find product' });
   }
-}
+
+  
+} 
+
+
 
 
 enum Color {

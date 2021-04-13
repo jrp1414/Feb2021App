@@ -18,7 +18,7 @@ import { ProductDetailsResolver } from './services/productdetails.resolver';
 
 const routes: Routes = [
   {
-    path: "productsmanager", component: ProductsManagerComponent, resolve:{products:ProductsResolver}, children: [
+    path: "", component: ProductsManagerComponent, resolve:{products:ProductsResolver}, children: [
       { path: "add", component: ProductAddComponent, canDeactivate:[ProductDeactivateGuard] },
       { path: "notfound", component: NotFoundComponent },
       { path: ":id", component: ProductMDetailsComponent, resolve:{product:ProductDetailsResolver}, canActivate:[ProductGuardService] },

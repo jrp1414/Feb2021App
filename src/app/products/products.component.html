@@ -29,7 +29,7 @@
                 </div>
             </div>
         </div> -->
-        <div class="col-md-3">
+        <!-- <div class="col-md-3">
             <div class="row">
                 <div class="col-md-4">
                     Sort By:
@@ -42,21 +42,20 @@
                     </select>
                 </div>
             </div>
+        </div> -->
+        <div class="col-md-6">
+            <cart [cart]="addedToCart"></cart>
         </div>
-        <!-- <div class="col-md-2">
-        <cart [cart]="addedToCart"></cart>
-    </div> -->
     </div>
     <div class="row">
-        <div class="col-md-3"
-            *ngFor="let prod of products | sort:sortBy">
+        <div class="col-md-3" *ngFor="let prod of products | sort:sortBy">
             <!-- <product-thumbnail [routerLink]="['/productdetails',prod.id,prod.title]" [pd]="prod" (addtocart)="Received($event)"></product-thumbnail> -->
             <!-- <product-thumbnail [routerLink]="['/productdetails',prod.id,{title:prod.title,rating:prod.rating}]"
                 [pd]="prod" (addtocart)="Received($event)"></product-thumbnail> -->
             <!-- <product-thumbnail [routerLink]="['/productdetails',prod.id]"
                 [queryParams]="{title:prod.title,rating:prod.rating}" [fragment]="prod.type" [pd]="prod" (addtocart)="Received($event)">
             </product-thumbnail> -->
-            <product-thumbnail [routerLink]="['/productdetails',prod.id]" [pd]="prod" (addtocart)="Received($event)">
+            <product-thumbnail [pd]="prod" (addtocart)="Received($event)">
             </product-thumbnail>
         </div>
     </div>

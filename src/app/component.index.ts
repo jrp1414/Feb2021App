@@ -1,0 +1,14 @@
+export { AppComponent } from './app.component';
+export { StringInterpolationComponent } from './string-interpolation/string-interpolation.component';
+export { ProprtyBindingComponent } from './proprty-binding/proprty-binding.component';
+export { EventBindingComponent } from './event-binding/event-binding.component';
+export { TwowayBindingComponent } from './twoway-binding/twoway-binding.component';
+export { ProductsComponent } from './products/products.component';
+export { ProductThumbnailComponent } from './products/product-thumbnail/product-thumbnail.component';
+export { CartComponent } from './products/cart/cart.component';
+export { TempProductsComponent } from './temp-products/temp-products.component';
+export { NavigationComponent } from './navigation/navigation.component';
+export { DashboardComponent } from './dashboard/dashboard.component';
+export { ProductDetailsComponent } from './products/product-details/product-details.component';
+export { SignUpComponent } from './sign-up/sign-up.component';
+export { LoginComponent } from './login/login.component';

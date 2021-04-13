@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { MessageService } from 'primeng/api';
 import { LoggerService } from '../services/logger.service';
 import { Product, TypeMaster } from '../services/product.model';
 import { ProductService } from '../services/product.service';
+import { cartAction, CartInfo } from '../store/cart.action';
 
 @Component({
   selector: 'app-products',
@@ -21,20 +23,27 @@ import { ProductService } from '../services/product.service';
     // ProductService
   ]
 })
-export class ProductsComponent {
+export class ProductsComponent implements OnInit {
   products: Product[] = [];
   filterText: string = "";
   categories: TypeMaster[] = [];
   selectedCategories: TypeMaster[] = [];
   addedToCart: string[] = [];
   constructor(private logger: LoggerService, private ps: ProductService,
-    private toast:MessageService) {
-    this.ps.getProducts().subscribe(resp=>{
+    private toast: MessageService, public store: Store) {
+    this.ps.getProducts().subscribe(resp => {
       this.products = <Product[]>resp;
-    },(error)=>{
-      
+    }, (error) => {
+
     });
-    this.ps.getCategories().subscribe(resp=>this.categories = <TypeMaster[]>resp);
+    this.ps.getCategories().subscribe(resp => this.categories = <TypeMaster[]>resp);
+  }
+  ngOnInit(): void {
+    this.store.subscribe(s => {
+      console.log(s);
+      let titles = s["cartR"].titles;
+      this.addedToCart = titles ? titles : [];
+    });
   }
 
   // changeSelection() {
@@ -44,11 +53,14 @@ export class ProductsComponent {
   // }
 
   Received(d) {
-    this.addedToCart.push(d);
+    // this.addedToCart.push(d);
+    this.addedToCart = [...this.addedToCart, d];
+    var cart: CartInfo = { titles: this.addedToCart };
+    this.store.dispatch(cartAction({ cart }));
   }
 
   FilterTest() {
-    
+
   }
 
   sortBy: string = "asc";
