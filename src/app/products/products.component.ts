@@ -29,7 +29,7 @@ export class ProductsComponent implements OnInit {
   categories: TypeMaster[] = [];
   selectedCategories: TypeMaster[] = [];
   addedToCart: string[] = [];
-  constructor(private logger: LoggerService, private ps: ProductService,
+  constructor(public logger: LoggerService, public ps: ProductService,
     private toast: MessageService, public store: Store) {
     this.ps.getProducts().subscribe(resp => {
       this.products = <Product[]>resp;

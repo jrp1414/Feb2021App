@@ -8,8 +8,8 @@ export class Product {
     availibility: boolean;
     safeFor: number;
     qualityScore: number;
-    Tags: Tag[];
-    tags:string[];
+    Tags?: Tag[];
+    tags?:string[];
     Addresses?: SellerAddress[];
     seller?: SellerAddress;
     price: number;
